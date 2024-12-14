@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import CurrencyInput from "react-currency-input-field";
 
-const EditExpenseWindow = ({ id, expense }) => {
+const EditExpensePage = ({ params }) => {
   const defaultData = {
     date: "",
     description: "",
@@ -15,6 +15,8 @@ const EditExpenseWindow = ({ id, expense }) => {
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
   const [showError, setShowError] = useState(false);
+
+  const id = params.id;
 
   const validateForm = () => {
     let errors = {};
@@ -73,7 +75,6 @@ const EditExpenseWindow = ({ id, expense }) => {
     validateForm();
   }, [data]);
 
-  if (!isOpen || data.amount == 0) return null;
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-black bg-opacity-70 fixed z-10 top-0 left-0">
       <div className="flex-shrink-0 flex flex-col gap-8 items-center min-w-[24rem] max-w-screen-sm bg-gray-200 py-7 px-5 rounded-lg">
@@ -168,4 +169,4 @@ const EditExpenseWindow = ({ id, expense }) => {
   );
 };
 
-export default EditExpenseWindow;
+export default EditExpensePage;

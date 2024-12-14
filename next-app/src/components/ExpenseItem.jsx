@@ -1,18 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const moment = require("moment");
 
-const ExpenseItem = ({
-  expense,
-  isEditOpen,
-  setIsEditOpen,
-  editId,
-  setEditId,
-  fetchData,
-  color,
-}) => {
+const ExpenseItem = ({ expense, fetchData, color }) => {
+  const router = useRouter();
+
   const formatDate = (date) => {
     return moment(date).format("L");
   };
@@ -25,10 +19,7 @@ const ExpenseItem = ({
   const handleAction = async (event) => {
     const action = event.target.value;
     if (action === "edit") {
-      // If the Edit button is clicked change to that expenses id.
-      setEditId(expense._id);
-      console.log(editId);
-      setIsEditOpen(true);
+      router.push(`/edit-expense/${expense._id}`);
     } else if (action === "delete") {
       // If the Delete button is clicked send the Delete request and refresh the data.
       await fetch(
@@ -43,10 +34,6 @@ const ExpenseItem = ({
   };
 
   const types = ["Food", "Entertainment", "Transportation", "Accommodation"];
-  // When the edit id changes, open the edit window if an edit id is selected (edit id is not -1)
-  useEffect(() => {
-    setIsEditOpen(true);
-  }, [editId]);
   return (
     <tr className={color}>
       {/* Color is either white or gray depending on where the expense is located */}
