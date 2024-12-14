@@ -2,8 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const connectMongoDB = require("./configs/mongo-db");
 const dotenv = require("dotenv").config({ path: "./configs/.env" });
+const Item = require("./models/item");
 
-const PORT = process.env.PORT;
+const PORT = "8000";
 
 const itemRouter = require("./routes/itemRouter");
 const expenseRouter = require("./routes/expenseRouter");
