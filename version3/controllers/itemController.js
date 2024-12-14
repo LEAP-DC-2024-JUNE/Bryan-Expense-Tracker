@@ -3,7 +3,7 @@ const Item = require("../models/item");
 // Create item
 exports.createItem = async (request, response) => {
   try {
-    const item = new Item(request.body);
+    const item = new Item({ user });
     const savedItem = await item.save();
     response.status(201).json(savedItem);
   } catch (err) {
