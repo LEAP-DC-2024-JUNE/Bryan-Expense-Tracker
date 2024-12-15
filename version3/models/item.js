@@ -8,4 +8,6 @@ const itemSchema = new mongoose.Schema({
   userId: { type: mongoose.SchemaType.ObjectId, ref: user },
 });
 
-module.exports = mongoose.model("Item", itemSchema);
+Item = mongoose.model("Item", itemSchema);
+
+module.exports = Item;

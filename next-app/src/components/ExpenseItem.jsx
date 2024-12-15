@@ -1,21 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { formatDate, formatAmount } from "@/utils/format";
 
-const moment = require("moment");
-
-const ExpenseItem = ({ expense, fetchData, color }) => {
+const ExpenseItem = ({ expense, color }) => {
   const router = useRouter();
 
-  const formatDate = (date) => {
-    return moment(date).format("L");
-  };
-  const formatAmount = (amount) => {
-    return amount.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-  };
   const handleAction = async (event) => {
     const action = event.target.value;
     if (action === "edit") {
@@ -33,7 +23,6 @@ const ExpenseItem = ({ expense, fetchData, color }) => {
     event.target.value = ""; // Change the selected option back to the empty one
   };
 
-  const types = ["Food", "Entertainment", "Transportation", "Accommodation"];
   return (
     <tr className={color}>
       {/* Color is either white or gray depending on where the expense is located */}
